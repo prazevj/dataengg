@@ -18,3 +18,18 @@ If you haven't mentioned any version details please use the below command to sta
 ``docker run --name postgres-container -e POSTGRES_PASSWORD=mysecretpassword -d postgres``
 
 You can choose to setup your own ``POSTGRES_PASSWORD`` in the above command.
+
+## Installing PgAdmin4
+
+PgAdmin 4 is a popular web-based administration and management tool for PostgreSQL. It provides a user-friendly interface that lets you interact with your databases, execute SQL queries, monitor database performance, and much more, without having to navigate complex command lines
+
+
+Input the following command into your terminal to install pgAdmin 4:
+
+``docker pull dpage/pgadmin4``
+
+Here is the command to run the pgAdmin 4 docker container:
+
+``docker run --name pgadmin-container -p 5050:5050 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=mypassword -d dpage/pgadmin4``
+
+You can replace with your own ``PGADMIN_DEFAULT_EMAIL`` and ``PGADMIN_DEFAULT_PASSWORD`` in the above command and this will be required to login to the web page of the PgAdmin.
