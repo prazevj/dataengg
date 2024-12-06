@@ -30,6 +30,32 @@ Input the following command into your terminal to install pgAdmin 4:
 
 Here is the command to run the pgAdmin 4 docker container:
 
-``docker run --name pgadmin-container -p 5050:5050 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=mypassword -d dpage/pgadmin4``
+``docker run --name pgadmin-container -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=mypassword -d dpage/pgadmin4``
 
 You can replace with your own ``PGADMIN_DEFAULT_EMAIL`` and ``PGADMIN_DEFAULT_PASSWORD`` in the above command and this will be required to login to the web page of the PgAdmin.
+
+
+## Using Docker Compose
+
+Since you’re likely using multiple services, or even a database management tool, Docker Compose can help you run instances more efficiently. With a single YAML file, you can define how your services work. Here’s an example for Postgres:
+
+```yaml
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+ 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+ 
+volumes:
+  pgdata:
+```
